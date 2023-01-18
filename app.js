@@ -4,7 +4,7 @@ const app = express()
 const tasks = require('./routes/tasks')
 const connectDB = require('./db/connect')
 const notFound = require('./middlewares/not-found')
-
+const errorHandlerMiddleWare = require('./middlewares/error-handler')
 // Middleware
 app.use(express.json())
 app.use(express.static('./public'))
@@ -12,6 +12,7 @@ app.use(express.static('./public'))
 // Routes
 app.use('/api/v1/tasks', tasks)
 app.use(notFound)
+app.use(errorHandlerMiddleWare)
 // app.get('/api/v1/tasks')         - get all the task
 // app.post('/api/v1/tasks')        - create a new task
 // app.get('/api/v1/tasks/:id')     - get single task
